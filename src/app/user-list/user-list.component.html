@@ -10,7 +10,7 @@
   </div>
   <div class="col-12 col-md-3 mb-3">
     <label for="roundFrom">Round From</label>
-    <select [(ngModel)]="fromRound" class="custom-select d-block w-100" id="roundFrom">
+    <select [(ngModel)]="fromRound" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100" id="roundFrom">
       <option *ngFor="let r of fromRounds" [value]="r.round">{{r.label}}</option>
     </select>
   </div>
@@ -22,7 +22,7 @@
   </div>
   <div class="col-12 col-md-3 mb-3">
     <label for="roundTo">Round To</label>
-    <select [(ngModel)]="toRound" class="custom-select d-block w-100"  id="roundTo">
+    <select [(ngModel)]="toRound" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100"  id="roundTo">
       <option *ngFor="let r of toRounds" [value]="r.round">{{r.label}}</option>
     </select>
   </div>
@@ -31,14 +31,14 @@
 <div class="row">
   <div class="col-12 col-md-3 mb-3">
     <label for="team">Team</label>
-    <select [(ngModel)]="team" class="custom-select d-block w-100" id="team">
+    <select [(ngModel)]="team" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100" id="team">
       <option [ngValue]="undefined" selected>All teams</option>
       <option *ngFor="let t of teams" [value]="t.name">{{t.name}}</option>
     </select>
   </div>
   <div class="col-12 col-md-3 mb-3">
     <label for="team">Position</label>
-    <select [(ngModel)]="position" class="custom-select d-block w-100" id="position">
+    <select [(ngModel)]="position" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100" id="position">
       <option [ngValue]="undefined" selected>All positions</option>
       <option *ngFor="let p of positions" [value]="p.code">{{p.name}}</option>
     </select>
