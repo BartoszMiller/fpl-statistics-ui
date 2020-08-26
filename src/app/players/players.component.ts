@@ -6,11 +6,11 @@ import {Position} from '../model/position';
 import {Player} from '../model/player';
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  selector: 'app-players',
+  templateUrl: './players.component.html',
+  styleUrls: ['./players.component.css']
 })
-export class UserListComponent implements OnInit {
+export class PlayersComponent implements OnInit {
 
   seasons: Season[] = [];
   teams: Team[] = [];
@@ -29,6 +29,8 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log('nginit');
+    console.log(this.players.length);
     this.statisticsService.findAllPositions().subscribe(data => {
       this.positions = data;
     });
