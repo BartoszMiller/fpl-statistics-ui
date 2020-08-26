@@ -11,7 +11,7 @@
   <div class="col-12 col-md-3 mb-3">
     <label for="roundFrom">Round From</label>
     <select [(ngModel)]="fromRound" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100" id="roundFrom">
-      <option *ngFor="let r of fromSeason.rounds" [value]="r.round">{{r.label}}</option>
+      <option *ngFor="let r of fromSeason.rounds" [ngValue]="r.round">{{r.label}}</option>
     </select>
   </div>
   <div class="col-12 col-md-3 mb-3">
@@ -22,8 +22,8 @@
   </div>
   <div class="col-12 col-md-3 mb-3">
     <label for="roundTo">Round To</label>
-    <select [(ngModel)]="toRound" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100"  id="roundTo">
-      <option *ngFor="let r of toSeason.rounds" [value]="r.round">{{r.label}}</option>
+    <select [(ngModel)]="toRound" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100" id="roundTo">
+      <option *ngFor="let r of toSeason.rounds" [ngValue]="r.round">{{r.label}}</option>
     </select>
   </div>
 </div>
@@ -46,23 +46,42 @@
 </div>
 <hr class="mb-4">
 
-<div class="card my-5">
-  <div class="card-body">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let user of users">
-        <td>{{ user.id }}</td>
-        <td>{{ user.name }}</td>
-        <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<table id="players" class="table table-hover table-responsive">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col" style="width: 51%">Player</th>
+    <th scope="col" style="width: 7%">£</th>
+    <th scope="col" style="width: 7%">Apps</th>
+    <th scope="col" style="width: 7%">Mins(avg)</th>
+    <th scope="col" style="width: 7%">Pts</th>
+    <th scope="col" style="width: 7%">Pts/Apps</th>
+    <th scope="col" style="width: 7%">Value</th>
+    <th scope="col" style="width: 7%">Value/Apps</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let player of players">
+    <td>
+      <div style="display: inline-block">
+        <img src="{{player.shirtUrl}}" width="30" height="30">
+      </div>
+      <div style="display: inline-block">
+        <div style="display: block">
+          <span class="name">{{player.webName}}</span>
+        </div>
+        <div style="display: block">
+          <span class="club">{{player.club}}</span>
+          <span class="position">{{player.position}}</span>
+        </div>
+      </div>
+
+    </td>
+    <td>{{player.cost}}</td>
+    <td>{{player.appearances}}</td>
+    <td>{{player.minutesPerAppearance}}</td>
+    <td>{{player.points}}</td>
+    <td>{{player.pointsPerAppearance}}</td>
+    <td>{{player.value}}</td>
+    <td>{{player.valuePerAppearance}}</td>
+  </tr>
+</table>

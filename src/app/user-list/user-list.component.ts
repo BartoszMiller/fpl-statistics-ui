@@ -35,8 +35,8 @@ export class UserListComponent implements OnInit {
 
     this.statisticsService.findAllSeasons().subscribe(seasons => {
       this.seasons = seasons.filter(season => season.rounds.length > 0);
-      this.fromSeason = seasons.find(season => season.rounds.length > 0);
-      this.toSeason = seasons.find(season => season.rounds.length > 0);
+      this.fromSeason = seasons.slice().reverse().find(season => season.rounds.length > 0);
+      this.toSeason = seasons.slice().reverse().find(season => season.rounds.length > 0);
       this.fromRound = this.fromSeason.rounds[0].round;
       this.toRound = this.toSeason.rounds[this.toSeason.rounds.length - 1].round;
       this.updatePlayers();
