@@ -3,12 +3,12 @@ export class Player {
   webName: string;
   club: string;
   position: string;
-  cost: string;
+  cost: number;
   appearances: number;
   minutesPerAppearance: number;
   points: number;
-  pointsPerAppearance: string;
-  value: string;
-  valuePerAppearance: string;
+  pointsPerAppearance: number;
+  value: number;
+  valuePerAppearance: number;
 }
 

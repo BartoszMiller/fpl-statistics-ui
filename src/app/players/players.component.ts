@@ -23,14 +23,14 @@ export class PlayersComponent implements OnInit {
   toRound: number;
   team: Team;
   position: Position;
+  sorts: string[] = ['Cost', 'Appearances', 'Minutes', 'Points', 'Points per Apps', 'Value', 'Value per Apps'];
+  sort = this.sorts[3];
 
   constructor(private statisticsService: StatisticsService) {
   }
 
   ngOnInit() {
 
-    console.log('nginit');
-    console.log(this.players.length);
     this.statisticsService.findAllPositions().subscribe(data => {
       this.positions = data;
     });
@@ -55,7 +55,8 @@ export class PlayersComponent implements OnInit {
       this.fromRound,
       this.toRound,
       this.team === undefined ? undefined : this.team.shortName,
-      this.position === undefined ? undefined : this.position.code.toFixed()
+      this.position === undefined ? undefined : this.position.code.toFixed(),
+      this.sort
     ).subscribe(data => {
       this.players = data;
     });

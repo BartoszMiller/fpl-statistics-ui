@@ -44,6 +44,9 @@ th {
   padding: 5px;
   vertical-align: middle;
   font-size: 14px;
+}
+
+td {
   text-align: center;
 }
 
@@ -51,7 +54,6 @@ th:first-child, td:first-child {
   position: sticky;
   left: 0px;
   text-align: left;
-
 }
 
 td:first-child {

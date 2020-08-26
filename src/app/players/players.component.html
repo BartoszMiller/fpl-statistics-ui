@@ -43,6 +43,12 @@
       <option *ngFor="let p of positions" [ngValue]="p">{{p.name}}</option>
     </select>
   </div>
+  <div class="col-12 col-md-3 mb-3">
+    <label for="team">Sort By</label>
+    <select [(ngModel)]="sort" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100" id="sort">
+      <option *ngFor="let s of sorts" [ngValue]="s">{{s}}</option>
+    </select>
+  </div>
 </div>
 <hr class="mb-4">
 
@@ -80,8 +86,8 @@
     <td>{{player.appearances}}</td>
     <td>{{player.minutesPerAppearance}}</td>
     <td>{{player.points}}</td>
-    <td>{{player.pointsPerAppearance}}</td>
-    <td>{{player.value}}</td>
-    <td>{{player.valuePerAppearance}}</td>
+    <td>{{player.pointsPerAppearance | number : '1.2-2'}}</td>
+    <td>{{player.value | number : '1.2-2'}}</td>
+    <td>{{player.valuePerAppearance | number : '1.2-2'}}</td>
   </tr>
 </table>
