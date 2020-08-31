@@ -31,22 +31,29 @@
 <div class="row">
   <div class="col-12 col-md-3 mb-3">
     <label for="team">Team</label>
-    <select [(ngModel)]="team" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100" id="team">
+    <select multiple [(ngModel)]="team" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100" id="team">
       <option [ngValue]="undefined" selected>All teams</option>
       <option *ngFor="let t of teams" [ngValue]="t">{{t.name}}</option>
     </select>
   </div>
   <div class="col-12 col-md-3 mb-3">
-    <label for="team">Position</label>
+    <label for="position">Position</label>
     <select [(ngModel)]="position" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100" id="position">
       <option [ngValue]="undefined" selected>All positions</option>
       <option *ngFor="let p of positions" [ngValue]="p">{{p.name}}</option>
     </select>
   </div>
   <div class="col-12 col-md-3 mb-3">
-    <label for="team">Sort By</label>
+    <label for="sort">Sort By</label>
     <select [(ngModel)]="sort" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100" id="sort">
       <option *ngFor="let s of sorts" [ngValue]="s">{{s}}</option>
+    </select>
+  </div>
+  <div class="col-12 col-md-3 mb-3">
+    <label for="apps">Apps(%)</label>
+    <select [(ngModel)]="app" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100" id="apps">
+      <option [ngValue]="undefined" selected>0-100%</option>
+      <option *ngFor="let a of apps" [ngValue]="a">{{a}}%</option>
     </select>
   </div>
 </div>

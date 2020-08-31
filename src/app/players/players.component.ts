@@ -21,10 +21,13 @@ export class PlayersComponent implements OnInit {
   fromRound: number;
   toSeason: Season = new Season();
   toRound: number;
-  team: Team;
+  team: Team[] = [];
   position: Position;
   sorts: string[] = ['Cost', 'Appearances', 'Minutes', 'Points', 'Points per Apps', 'Value', 'Value per Apps'];
   sort = this.sorts[3];
+
+  apps: string[] = ['0-25', '25-50', '50-70', '70-80', '90-100'];
+  app: string = this.apps[4];
 
   constructor(private statisticsService: StatisticsService) {
   }
@@ -54,9 +57,10 @@ export class PlayersComponent implements OnInit {
       this.toSeason.code,
       this.fromRound,
       this.toRound,
-      this.team === undefined ? undefined : this.team.shortName,
+      this.team === undefined ? undefined : this.team.map(team => team.shortName).join(','),
       this.position === undefined ? undefined : this.position.code.toFixed(),
-      this.sort
+      this.sort,
+      this.app === undefined ? undefined : this.app
     ).subscribe(data => {
       this.players = data;
     });
