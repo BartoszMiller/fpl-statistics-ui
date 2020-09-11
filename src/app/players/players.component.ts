@@ -26,8 +26,8 @@ export class PlayersComponent implements OnInit {
   sorts: string[] = ['Cost', 'Appearances', 'Minutes', 'Points', 'Points per Apps', 'Value', 'Value per Apps'];
   sort = this.sorts[3];
 
-  apps: string[] = ['0-25', '25-50', '50-70', '70-80', '90-100'];
-  app: string = this.apps[4];
+  apps: string[] = ['>0', '>25', '>50', '>60', '>70', '>80', '>90', '>95'];
+  app: string = this.apps[6];
 
   constructor(private statisticsService: StatisticsService) {
   }
