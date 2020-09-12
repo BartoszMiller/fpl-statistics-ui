@@ -1,4 +1,4 @@
-<h1 class="mt-5">Fantasy League Statistics</h1>
+<h1 class="mt-5">Fantasy Moneyball</h1>
 <hr class="mb-4">
 
 <div class="row">
@@ -37,13 +37,6 @@
     </select>
   </div>
   <div class="col-12 col-md-3 mb-3">
-    <label for="position">Position</label>
-    <select [(ngModel)]="position" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100" id="position">
-      <option [ngValue]="undefined" selected>All positions</option>
-      <option *ngFor="let p of positions" [ngValue]="p">{{p.name}}</option>
-    </select>
-  </div>
-  <div class="col-12 col-md-3 mb-3">
     <label for="sort">Sort By</label>
     <select [(ngModel)]="sort" (ngModelChange)="updatePlayers()" class="custom-select d-block w-100" id="sort">
       <option *ngFor="let s of sorts" [ngValue]="s">{{s}}</option>
@@ -55,6 +48,10 @@
       <option [ngValue]="undefined" selected>0-100%</option>
       <option *ngFor="let a of apps" [ngValue]="a">{{a}}%</option>
     </select>
+  </div>
+  <div class="col-12 col-md-3 mb-3">
+    <label for="team">Budget</label>
+    <input [(ngModel)]="budget" class="d-block w-100" (change)="updatePlayers()" />
   </div>
 </div>
 
@@ -70,6 +67,8 @@
 </div>
 <hr class="mb-4">
 
+<h1 class="mt-5">Optimal 11 - Formation {{formation}} - Price {{teamPrice}}</h1>
+<hr class="mb-4">
 <table id="players" class="table table-hover table-responsive">
   <thead class="thead-dark">
   <tr>
@@ -98,7 +97,94 @@
           <span class="position">{{player.position}}</span>
         </div>
       </div>
+      <button class="btn btn-outline-success btn-sm" (click)="addToWhiteList(player.id)">Add</button>
+      <button class="btn btn-outline-success btn-sm" (click)="removeFromWhiteList(player.id)">Remove</button>
+      <button class="btn btn-outline-dark btn-sm" (click)="addToBlackList(player.id)">Add</button>
+      <button class="btn btn-outline-dark btn-sm" (click)="removeFromBlackList(player.id)">Remove</button>
+    </td>
+    <td>{{player.cost}}</td>
+    <td>{{player.appearances}}</td>
+    <td>{{player.minutesPerAppearance}}</td>
+    <td>{{player.points}}</td>
+    <td>{{player.pointsPerAppearance | number : '1.2-2'}}</td>
+    <td>{{player.value | number : '1.2-2'}}</td>
+    <td>{{player.valuePerAppearance | number : '1.2-2'}}</td>
+  </tr>
+</table>
 
+<h1 class="mt-5">Whitelist</h1>
+<hr class="mb-4">
+<table id="whitelist" class="table table-hover table-responsive">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col" style="width: 51%">Player</th>
+    <th scope="col" style="width: 7%">£</th>
+    <th scope="col" style="width: 7%">Apps</th>
+    <th scope="col" style="width: 7%">Mins(avg)</th>
+    <th scope="col" style="width: 7%">Pts</th>
+    <th scope="col" style="width: 7%">Pts/Apps</th>
+    <th scope="col" style="width: 7%">Value</th>
+    <th scope="col" style="width: 7%">Value/Apps</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let player of whitelist">
+    <td>
+      <div style="display: inline-block">
+        <img src="{{player.shirtUrl}}" width="30" height="30">
+      </div>
+      <div style="display: inline-block">
+        <div style="display: block">
+          <span class="name">{{player.webName}}</span>
+        </div>
+        <div style="display: block">
+          <span class="club">{{player.club}}</span>
+          <span class="position">{{player.position}}</span>
+        </div>
+      </div>
+      <button class="btn btn-outline-success btn-sm" (click)="removeFromWhiteList(player.id)">Remove</button>
+    </td>
+    <td>{{player.cost}}</td>
+    <td>{{player.appearances}}</td>
+    <td>{{player.minutesPerAppearance}}</td>
+    <td>{{player.points}}</td>
+    <td>{{player.pointsPerAppearance | number : '1.2-2'}}</td>
+    <td>{{player.value | number : '1.2-2'}}</td>
+    <td>{{player.valuePerAppearance | number : '1.2-2'}}</td>
+  </tr>
+</table>
+
+<h1 class="mt-5">Blacklist</h1>
+<hr class="mb-4">
+<table id="blacklist" class="table table-hover table-responsive">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col" style="width: 51%">Player</th>
+    <th scope="col" style="width: 7%">£</th>
+    <th scope="col" style="width: 7%">Apps</th>
+    <th scope="col" style="width: 7%">Mins(avg)</th>
+    <th scope="col" style="width: 7%">Pts</th>
+    <th scope="col" style="width: 7%">Pts/Apps</th>
+    <th scope="col" style="width: 7%">Value</th>
+    <th scope="col" style="width: 7%">Value/Apps</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let player of blacklist">
+    <td>
+      <div style="display: inline-block">
+        <img src="{{player.shirtUrl}}" width="30" height="30">
+      </div>
+      <div style="display: inline-block">
+        <div style="display: block">
+          <span class="name">{{player.webName}}</span>
+        </div>
+        <div style="display: block">
+          <span class="club">{{player.club}}</span>
+          <span class="position">{{player.position}}</span>
+        </div>
+      </div>
+      <button class="btn btn-outline-dark btn-sm" (click)="removeFromBlackList(player.id)">Remove</button>
     </td>
     <td>{{player.cost}}</td>
     <td>{{player.appearances}}</td>

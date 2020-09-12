@@ -5,14 +5,15 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {PlayersComponent} from './players/players.component';
-import {UserFormComponent} from './user-form/user-form.component';
+import {MoneyballComponent} from './moneyball/moneyball.component';
 import {StatisticsService} from './service/statistics.service';
+import {MoneyballService} from './service/moneyball.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayersComponent,
-    UserFormComponent
+    MoneyballComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +21,7 @@ import {StatisticsService} from './service/statistics.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [StatisticsService],
+  providers: [StatisticsService, MoneyballService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
