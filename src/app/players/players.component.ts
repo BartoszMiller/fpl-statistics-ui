@@ -29,6 +29,9 @@ export class PlayersComponent implements OnInit {
   apps: string[] = ['>0', '>25', '>50', '>60', '>70', '>80', '>90', '>95'];
   app: string = this.apps[6];
 
+  homeGames = true;
+  awayGames = true;
+
   constructor(private statisticsService: StatisticsService) {
   }
 
@@ -60,7 +63,9 @@ export class PlayersComponent implements OnInit {
       this.team === undefined ? undefined : this.team.map(team => team.shortName).join(','),
       this.position === undefined ? undefined : this.position.code.toFixed(),
       this.sort,
-      this.app === undefined ? undefined : this.app
+      this.app === undefined ? undefined : this.app,
+      this.homeGames,
+      this.awayGames
     ).subscribe(data => {
       this.players = data;
     });

@@ -57,6 +57,17 @@
     </select>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-12 col-md-3 mb-3">
+    <label for="team">Home Games</label>
+    <input type="checkbox" [(ngModel)]="homeGames" (change)="updatePlayers()"/>
+  </div>
+  <div class="col-12 col-md-3 mb-3">
+    <label for="team">Away Games</label>
+    <input type="checkbox" [(ngModel)]="awayGames" (change)="updatePlayers()"/>
+  </div>
+</div>
 <hr class="mb-4">
 
 <table id="players" class="table table-hover table-responsive">
@@ -86,6 +97,11 @@
           <span class="club">{{player.club}}</span>
           <span class="position">{{player.position}}</span>
         </div>
+        <a target="_blank" class="btn btn-outline-success btn-sm" href="http://localhost:8080/whitelist/add/{{player.id}}">Add</a>
+        <a target="_blank" class="btn btn-outline-success btn-sm" href="http://localhost:8080/whitelist/remove/{{player.id}}">Remove</a>
+        <a target="_blank" class="btn btn-outline-dark btn-sm" href="http://localhost:8080//blacklist/add/{{player.id}}">Add</a>
+        <a target="_blank" class="btn btn-outline-dark btn-sm" href="http://localhost:8080/blacklist/remove/{{player.id}}">Remove</a>
+
       </div>
 
     </td>

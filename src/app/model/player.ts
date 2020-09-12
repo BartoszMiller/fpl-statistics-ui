@@ -1,4 +1,5 @@
 export class Player {
+  id: number;
   shirtUrl: string;
   webName: string;
   club: string;

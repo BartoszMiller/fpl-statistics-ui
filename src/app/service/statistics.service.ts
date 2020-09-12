@@ -35,14 +35,16 @@ export class StatisticsService {
     return this.http.get<Team[]>(this.seasonsUrl + '/' + seasonCode + '/teams');
   }
 
-  public findPlayers(fromSeason: string, toSeason: string, fromRound: number, toRound: number, shortName: string, positionCode: string, sort: string, app: string): Observable<Player[]> {
+  public findPlayers(fromSeason: string, toSeason: string, fromRound: number, toRound: number, shortName: string, positionCode: string, sort: string, app: string, homeGames: boolean, awayGames: boolean): Observable<Player[]> {
 
     let params = new HttpParams()
       .set('fromSeason', fromSeason)
       .set('toSeason', toSeason)
       .set('fromRound', fromRound.toFixed())
       .set('toRound', toRound.toFixed())
-      .set('sort', sort);
+      .set('sort', sort)
+      .set('homeGames', homeGames.toString())
+      .set('awayGames', awayGames.toString());
 
     if (shortName !== undefined) {
       params = params.set('team', shortName);
