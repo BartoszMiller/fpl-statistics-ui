@@ -19,6 +19,7 @@ export class MoneyballComponent implements OnInit {
   blacklist: Player[] = [];
   formation: string;
   teamPrice: number;
+  totalPoints: number;
 
   fromSeason: Season = new Season();
   fromRound: number;
@@ -29,9 +30,9 @@ export class MoneyballComponent implements OnInit {
   sort = this.sorts[3];
 
   apps: string[] = ['>0', '>25', '>50', '>60', '>70', '>80', '>90', '>95'];
-  app: string = this.apps[6];
+  app: string = this.apps[5];
 
-  budget = '100';
+  budget = '83';
 
   homeGames = true;
   awayGames = true;
@@ -71,6 +72,7 @@ export class MoneyballComponent implements OnInit {
       this.blacklist = data.blackList;
       this.formation = data.formation;
       this.teamPrice = data.teamPrice;
+      this.totalPoints = data.totalPoints;
     });
   }
 

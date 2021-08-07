@@ -11,5 +11,7 @@ export class Player {
   pointsPerAppearance: number;
   value: number;
   valuePerAppearance: number;
+  assists: number;
+  goals: number;
 }
 

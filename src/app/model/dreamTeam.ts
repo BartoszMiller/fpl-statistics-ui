@@ -6,4 +6,5 @@ export class DreamTeam {
   blackList: Player[];
   formation: string;
   teamPrice: number;
+  totalPoints: number;
 }

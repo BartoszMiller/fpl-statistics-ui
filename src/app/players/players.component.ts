@@ -4,6 +4,7 @@ import {StatisticsService} from '../service/statistics.service';
 import {Team} from '../model/team';
 import {Position} from '../model/position';
 import {Player} from '../model/player';
+import {MoneyballService} from '../service/moneyball.service';
 
 @Component({
   selector: 'app-players',
@@ -26,13 +27,13 @@ export class PlayersComponent implements OnInit {
   sorts: string[] = ['Cost', 'Appearances', 'Minutes', 'Points', 'Points per Apps', 'Value', 'Value per Apps'];
   sort = this.sorts[3];
 
-  apps: string[] = ['>0', '>25', '>50', '>60', '>70', '>80', '>90', '>95'];
-  app: string = this.apps[6];
+  apps: string[] = ['>0', '>30', '>40', '>50', '>60', '>70', '>80', '>90', '>95'];
+  app: string = this.apps[0];
 
   homeGames = true;
   awayGames = true;
 
-  constructor(private statisticsService: StatisticsService) {
+  constructor(private statisticsService: StatisticsService, private moneyballService: MoneyballService) {
   }
 
   ngOnInit() {
@@ -69,5 +70,25 @@ export class PlayersComponent implements OnInit {
     ).subscribe(data => {
       this.players = data;
     });
+  }
+
+  addToWhiteList(playerId: number) {
+    this.moneyballService.addToWhiteList(playerId);
+    this.updatePlayers();
+  }
+
+  addToBlackList(playerId: number) {
+    this.moneyballService.addToBlackList(playerId);
+    this.updatePlayers();
+  }
+
+  removeFromWhiteList(playerId: number) {
+    this.moneyballService.removeFromWhiteList(playerId);
+    this.updatePlayers();
+  }
+
+  removeFromBlackList(playerId: number) {
+    this.moneyballService.removeFromBlackList(playerId);
+    this.updatePlayers();
   }
 }
